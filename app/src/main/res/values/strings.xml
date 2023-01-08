@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Probo Assignment 1</string>
+    <string name="logo_description">Logo Description</string>
+    <string name="sign_up_text">SIGN UP</string>
+    <string name="sign_up_content_description"><![CDATA[Register]]></string>
+    <string name="main_activity_toolbar_text">WELCOME</string>
+    <string name="sign_out_text">Log Out</string>
+</resources>
