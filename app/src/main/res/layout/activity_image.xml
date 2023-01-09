@@ -12,11 +12,12 @@
             android:id="@+id/btn_image_select"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:layout_centerInParent="true"
             android:background="@drawable/shape_button_rounded"
-            android:text="SELECT IMAGE FROM GALLERY"
+            android:src="@drawable/shape_button_rounded"
+            android:text="@string/img_select_button"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

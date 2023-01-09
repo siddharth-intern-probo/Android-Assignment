@@ -3,12 +3,11 @@ package com.probo.proboassignment1.activities
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.probo.proboassignment1.R
@@ -24,7 +23,7 @@ class ImageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image)
 
-        val selectImageButton = findViewById<AppCompatImageButton>(R.id.btn_image_select)
+        val selectImageButton = findViewById<AppCompatButton>(R.id.btn_image_select)
         selectImageButton.setOnClickListener {
             if(ContextCompat.checkSelfPermission(this@ImageActivity,
                     Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -46,7 +45,7 @@ class ImageActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == MainActivity.READ_STORAGE_PERMISSION_CODE) {
+        if(requestCode == READ_STORAGE_PERMISSION_CODE) {
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 pickImageFromGallery(this@ImageActivity)
             }
@@ -59,7 +58,7 @@ class ImageActivity : AppCompatActivity() {
 
     private fun pickImageFromGallery(activity: ImageActivity) {
         val galleryIntent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        activity.startActivityForResult(galleryIntent, MainActivity.PICK_IMAGE_REQUEST_CODE)
+        activity.startActivityForResult(galleryIntent, PICK_IMAGE_REQUEST_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -68,10 +67,12 @@ class ImageActivity : AppCompatActivity() {
             var selectedImage = data.getData()
             val intent = Intent(this@ImageActivity, MainActivity::class.java)
 
+            val gotBundle = getIntent().extras;
+
             val bundle = Bundle()
-            bundle.putString("email", bundle?.getString("email"))
-            bundle.putString("dob", bundle?.getString("dob"))
-            bundle.putString("password", bundle?.getString("password"))
+            bundle.putString("email", gotBundle?.getString("email"))
+            bundle.putString("dob", gotBundle?.getString("dob"))
+            bundle.putString("password", gotBundle?.getString("password"))
             bundle.putString("selectedImage", selectedImage.toString())
 
             intent.putExtras(bundle)

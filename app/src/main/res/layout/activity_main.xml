@@ -14,18 +14,22 @@
 
         <ImageView
             android:id="@+id/display_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="Image"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="40dp"
+            android:layout_marginEnd="12dp"
             android:layout_marginBottom="10dp"
-            android:src="@drawable/ic_baseline_person_24" />
+            android:contentDescription="Image"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_person_24"  />
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="10dp"
             android:layout_marginEnd="40dp"
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardElevation="@dimen/card_elevation">

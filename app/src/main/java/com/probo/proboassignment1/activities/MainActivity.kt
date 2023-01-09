@@ -3,6 +3,7 @@ package com.probo.proboassignment1.activities
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
@@ -34,7 +35,8 @@ class MainActivity : AppCompatActivity() {
 
         val bundle = intent.extras
 
-        selectedImageFileUri = bundle?.getString("imageURI")?.toUri()
+        selectedImageFileUri = bundle?.getString("selectedImage")?.toUri()
+        Log.d("Image URI", selectedImageFileUri.toString())
 
         tvEmail.text = "Email : " + bundle?.getString("email")
         tvDOB.text = "DOB : " + bundle?.getString("dob")

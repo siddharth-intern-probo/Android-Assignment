@@ -5,4 +5,5 @@
     <string name="sign_up_content_description"><![CDATA[Register]]></string>
     <string name="main_activity_toolbar_text">WELCOME</string>
     <string name="sign_out_text">Log Out</string>
+    <string name="img_select_button">SELECT IMAGE FROM GALLERY</string>
 </resources>
