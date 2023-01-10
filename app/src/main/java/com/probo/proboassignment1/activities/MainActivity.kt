@@ -3,40 +3,36 @@ package com.probo.proboassignment1.activities
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.core.net.toUri
-import com.probo.proboassignment1.R
+import com.probo.proboassignment1.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        const val READ_STORAGE_PERMISSION_CODE = 1
-        const val PICK_IMAGE_REQUEST_CODE = 2
         const val SHARED_PREF_NAME = "myPreferences"
     }
 
+    private lateinit var binding: ActivityMainBinding
     private var selectedImageFileUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setUpDetails()
     }
 
     private fun setUpDetails() {
-        val tvEmail = findViewById<TextView>(R.id.tv_email)
-        val tvDOB = findViewById<TextView>(R.id.tv_dob)
-        val tvPassword= findViewById<TextView>(R.id.tv_password)
-        val tvDisplayImage = findViewById<ImageView>(R.id.display_image)
+        val tvEmail = binding.tvEmail
+        val tvDOB = binding.tvDob
+        val tvPassword= binding.tvPassword
+        val tvDisplayImage = binding.displayImage
 
         val bundle = intent.extras
 
         selectedImageFileUri = bundle?.getString("selectedImage")?.toUri()
-        Log.d("Image URI", selectedImageFileUri.toString())
 
         tvEmail.text = "Email : " + bundle?.getString("email")
         tvDOB.text = "DOB : " + bundle?.getString("dob")
@@ -53,3 +49,4 @@ class MainActivity : AppCompatActivity() {
     }
 
 }
+

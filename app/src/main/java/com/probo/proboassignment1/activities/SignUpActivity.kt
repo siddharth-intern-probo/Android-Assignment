@@ -8,29 +8,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatImageButton
-import com.probo.proboassignment1.R
+import com.probo.proboassignment1.databinding.ActivitySignUpBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 class SignUpActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivitySignUpBinding
     private var etSelectedDate: AppCompatEditText? = null
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        binding = ActivitySignUpBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val dobButton = findViewById<AppCompatImageButton>(R.id.dob_picker)
-        etSelectedDate = findViewById(R.id.et_dob)
+        val dobButton = binding.dobPicker
+        etSelectedDate = binding.etDob
         dobButton.setOnClickListener {
             pickDateFromDatePickerDialog()
         }
 
-        val btnSignUp = findViewById<AppCompatButton>(R.id.btn_sign_up)
+        val btnSignUp = binding.btnSignUp
         btnSignUp.setOnClickListener {
             validateInput()
         }
@@ -72,9 +72,9 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun validateInput() {
-        val etEmail = findViewById<AppCompatEditText>(R.id.et_email).text.toString().trim()
-        val etPassword = findViewById<AppCompatEditText>(R.id.et_password).text.toString()
-        val etRePassword = findViewById<AppCompatEditText>(R.id.et_re_password).text.toString()
+        val etEmail = binding.etEmail.text.toString().trim()
+        val etPassword = binding.etPassword.text.toString()
+        val etRePassword = binding.etRePassword.text.toString()
 
 
         if(etEmail.isNotEmpty()) {

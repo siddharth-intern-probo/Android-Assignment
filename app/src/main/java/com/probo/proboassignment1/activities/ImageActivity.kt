@@ -7,12 +7,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.probo.proboassignment1.R
+import com.probo.proboassignment1.databinding.ActivityImageBinding
 
 class ImageActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityImageBinding
 
     companion object {
         const val READ_STORAGE_PERMISSION_CODE = 1
@@ -21,9 +22,10 @@ class ImageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_image)
+        binding = ActivityImageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val selectImageButton = findViewById<AppCompatButton>(R.id.btn_image_select)
+        val selectImageButton = binding.btnImageSelect
         selectImageButton.setOnClickListener {
             if(ContextCompat.checkSelfPermission(this@ImageActivity,
                     Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
