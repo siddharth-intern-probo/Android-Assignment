@@ -76,31 +76,39 @@ class SignUpActivity : AppCompatActivity() {
         val etPassword = binding.etPassword.text.toString()
         val etRePassword = binding.etRePassword.text.toString()
 
-
-        if(etEmail.isNotEmpty()) {
-            if(etEmail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex())) {
-                if(etPassword.isNotEmpty() && etRePassword.isNotEmpty()) {
-                    if(etPassword == etRePassword) {
-                        if(etPassword.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$".toRegex())) {
-                            val intent = Intent(this, ImageActivity::class.java)
-
-                            val bundle = Bundle()
-                            bundle.putString("email", etEmail)
-                            bundle.putString("dob", etSelectedDate?.text.toString())
-                            bundle.putString("password", etPassword)
-
-                            intent.putExtras(bundle)
-                            startActivity(intent)
-                        }
-                        else showToast("Password must contain 8 letters(a capital and a small alphabet, a digit & one special symbol)")
-                    }
-                    else showToast("Passwords Doesn't Match")
-                }
-                else showToast("Passwords Field Can't Be Empty")
-            }
-            else showToast("Invalid Email Format")
+        if(etEmail.isEmpty()) {
+            showToast("Email Field Can't Be Empty")
+            return
         }
-        else showToast("Email Field Can't Be Empty")
+        if(!etEmail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex())) {
+            showToast("Invalid Email Format")
+            return
+        }
+        if(etPassword.isEmpty()) {
+            showToast("Passwords Field Can't Be Empty")
+            return
+        }
+        if(etRePassword.isEmpty()) {
+            showToast("Passwords Field Can't Be Empty")
+            return
+        }
+        if(etPassword != etRePassword) {
+            showToast("Passwords Doesn't Match")
+            return
+        }
+        if(!etPassword.matches("^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{4,}$".toRegex())) {
+            showToast("Password must contain 8 letters(a capital and a small alphabet, a digit & one special symbol)")
+            return
+        }
+        val intent = Intent(this, ImageActivity::class.java)
+
+        val bundle = Bundle()
+        bundle.putString("email", etEmail)
+        bundle.putString("dob", etSelectedDate?.text.toString())
+        bundle.putString("password", etPassword)
+
+        intent.putExtras(bundle)
+        startActivity(intent)
     }
 
     private fun showToast(message: String) {
