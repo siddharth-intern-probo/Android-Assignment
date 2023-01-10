@@ -27,7 +27,7 @@
             android:name=".activities.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+            android:theme="@style/Theme.ProboAssignment1.Starting">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
